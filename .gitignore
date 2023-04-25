@@ -1,0 +1,35 @@
+# compiled output
+nest_ducasse/dist
+nest_ducasse/node_modules
+
+# Logs
+nest_ducasse/logs
+nest_ducasse/*.log
+nest_ducasse/npm-debug.log*
+nest_ducasse/pnpm-debug.log*
+nest_ducasse/yarn-debug.log*
+nest_ducasse/yarn-error.log*
+nest_ducasse/lerna-debug.log*
+
+# OS
+nest_ducasse/.DS_Store
+
+# Tests
+nest_ducasse/coverage
+nest_ducasse/.nyc_output
+
+# IDEs and editors
+nest_ducasse/.idea
+nest_ducasse/.project
+nest_ducasse/.classpath
+nest_ducasse/.c9/
+nest_ducasse/*.launch
+nest_ducasse/.settings/
+nest_ducasse/*.sublime-workspace
+
+# IDE - VSCode
+nest_ducasse/.vscode/*
+nest_ducasse/!.vscode/settings.json
+nest_ducasse/!.vscode/tasks.json
+nest_ducasse/!.vscode/launch.json
+nest_ducasse/!.vscode/extensions.json
