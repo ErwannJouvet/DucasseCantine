@@ -1,0 +1,167 @@
+{
+	"_type": "Project",
+	"_id": "AAAAAAFF+h6SjaM2Hec=",
+	"name": "Untitled",
+	"ownedElements": [
+		{
+			"_type": "UMLActivity",
+			"_id": "AAAAAAGHt73Y99KLL34=",
+			"_parent": {
+				"$ref": "AAAAAAFF+h6SjaM2Hec="
+			},
+			"name": "Activity1",
+			"ownedElements": [
+				{
+					"_type": "UMLActivityDiagram",
+					"_id": "AAAAAAGHt73Y+NKM/oI=",
+					"_parent": {
+						"$ref": "AAAAAAGHt73Y99KLL34="
+					},
+					"name": "ActivityDiagram1",
+					"ownedViews": [
+						{
+							"_type": "EllipseView",
+							"_id": "AAAAAAGHt74YsNKQnB4=",
+							"_parent": {
+								"$ref": "AAAAAAGHt73Y+NKM/oI="
+							},
+							"font": "Arial;13;0",
+							"left": 224,
+							"top": 168,
+							"width": 169,
+							"height": 97
+						},
+						{
+							"_type": "EllipseView",
+							"_id": "AAAAAAGHt75o9dKb5DM=",
+							"_parent": {
+								"$ref": "AAAAAAGHt73Y+NKM/oI="
+							},
+							"font": "Arial;13;0",
+							"left": 664,
+							"top": 168,
+							"width": 169,
+							"height": 97
+						},
+						{
+							"_type": "EllipseView",
+							"_id": "AAAAAAGHt77KBtLKNmQ=",
+							"_parent": {
+								"$ref": "AAAAAAGHt73Y+NKM/oI="
+							},
+							"font": "Arial;13;0",
+							"left": 440,
+							"top": 408,
+							"width": 177,
+							"height": 97
+						},
+						{
+							"_type": "RectangleView",
+							"_id": "AAAAAAGHt78agtLRFqg=",
+							"_parent": {
+								"$ref": "AAAAAAGHt73Y+NKM/oI="
+							},
+							"font": "Arial;13;0",
+							"left": 384,
+							"top": 624,
+							"width": 281,
+							"height": 137
+						},
+						{
+							"_type": "FreelineEdgeView",
+							"_id": "AAAAAAGHt8BF3NL6tCg=",
+							"_parent": {
+								"$ref": "AAAAAAGHt73Y+NKM/oI="
+							},
+							"font": "Arial;13;0",
+							"points": "752:264;752:320;536:320"
+						},
+						{
+							"_type": "FreelineEdgeView",
+							"_id": "AAAAAAGHt8FKudMKOzs=",
+							"_parent": {
+								"$ref": "AAAAAAGHt73Y+NKM/oI="
+							},
+							"font": "Arial;13;0",
+							"points": "304:264;304:320;536:320"
+						},
+						{
+							"_type": "FreelineEdgeView",
+							"_id": "AAAAAAGHt8HOZNMURX4=",
+							"_parent": {
+								"$ref": "AAAAAAGHt73Y+NKM/oI="
+							},
+							"font": "Arial;13;0",
+							"lineStyle": 1,
+							"points": "528:320;528:406",
+							"headEndStyle": 2
+						},
+						{
+							"_type": "FreelineEdgeView",
+							"_id": "AAAAAAGHt8JCLdMaSi8=",
+							"_parent": {
+								"$ref": "AAAAAAGHt73Y+NKM/oI="
+							},
+							"font": "Arial;13;0",
+							"lineStyle": 1,
+							"points": "528:504;528:624",
+							"headEndStyle": 2
+						},
+						{
+							"_type": "UMLTextView",
+							"_id": "AAAAAAGHt8k3l1IFAQE=",
+							"_parent": {
+								"$ref": "AAAAAAGHt73Y+NKM/oI="
+							},
+							"font": "Arial;13;0",
+							"left": 264,
+							"top": 200,
+							"width": 80.0908203125,
+							"height": 25,
+							"text": "Restaurants"
+						},
+						{
+							"_type": "UMLTextView",
+							"_id": "AAAAAAGHt8m6plILpx8=",
+							"_parent": {
+								"$ref": "AAAAAAGHt73Y+NKM/oI="
+							},
+							"font": "Arial;13;0",
+							"left": 712,
+							"top": 200,
+							"width": 75.03173828125,
+							"height": 41,
+							"text": "Cartes des restaurants"
+						},
+						{
+							"_type": "UMLTextView",
+							"_id": "AAAAAAGHt8yOxlIWA/8=",
+							"_parent": {
+								"$ref": "AAAAAAGHt73Y+NKM/oI="
+							},
+							"font": "Arial;13;0",
+							"left": 496,
+							"top": 448,
+							"width": 65,
+							"height": 25,
+							"text": "Site web"
+						},
+						{
+							"_type": "UMLTextView",
+							"_id": "AAAAAAGHt82TIFId4Ic=",
+							"_parent": {
+								"$ref": "AAAAAAGHt73Y+NKM/oI="
+							},
+							"font": "Arial;13;0",
+							"left": 424,
+							"top": 672,
+							"width": 217,
+							"height": 65,
+							"text": "Elargir le panel de plats possibles au menu de chaque restaurant"
+						}
+					]
+				}
+			]
+		}
+	]
+}
