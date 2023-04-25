@@ -1,26 +1,32 @@
 import { Injectable } from '@nestjs/common';
-import { CreateEtapeDto } from './dto/create-etape.dto';
-import { UpdateEtapeDto } from './dto/update-etape.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Etape } from './entities/etape.entity';
 
 @Injectable()
 export class EtapeService {
-  create(createEtapeDto: CreateEtapeDto) {
-    return 'This action adds a new etape';
+
+  constructor(
+    @InjectRepository(Etape) private etapeRepository: Repository<Etape>
+  ) {}
+
+  create(etape: Etape) {
+    return this.etapeRepository.save(etape)
   }
 
-  findAll() {
-    return `This action returns all etape`;
+  async findAll() {
+    return await this.etapeRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} etape`;
+  async findOne(id: number) {
+    return await this.etapeRepository.findOneBy({ "id": id });
   }
 
-  update(id: number, updateEtapeDto: UpdateEtapeDto) {
-    return `This action updates a #${id} etape`;
+  update(id: number, etape: Etape) {
+    return this.etapeRepository.update(id, etape);
   }
 
   remove(id: number) {
-    return `This action removes a #${id} etape`;
+    return this.etapeRepository.delete(id);
   }
 }
