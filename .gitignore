@@ -33,3 +33,47 @@ nest_ducasse/!.vscode/settings.json
 nest_ducasse/!.vscode/tasks.json
 nest_ducasse/!.vscode/launch.json
 nest_ducasse/!.vscode/extensions.json
+
+# Ignore Angular
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+angular_ducasse/dist
+angular_ducasse/tmp
+angular_ducasse/out-tsc
+angular_ducasse/bazel-out
+
+# Node
+angular_ducasse/node_modules
+angular_ducasse/npm-debug.log
+angular_ducasse/yarn-error.log
+
+# IDEs and editors
+angular_ducasse/.idea/
+angular_ducasse/.project
+angular_ducasse/.classpath
+angular_ducasse/.c9/
+angular_ducasse/*.launch
+angular_ducasse/.settings/
+angular_ducasse/*.sublime-workspace
+
+# Visual Studio Code
+angular_ducasse/.vscode/*
+angular_ducasse/!.vscode/settings.json
+angular_ducasse/!.vscode/tasks.json
+angular_ducasse/!.vscode/launch.json
+angular_ducasse/!.vscode/extensions.json
+angular_ducasse/.history/*
+
+# Miscellaneous
+angular_ducasse/*.angular/cache
+angular_ducasse/.sass-cache/
+angular_ducasse/connect.lock
+angular_ducasse/coverage
+angular_ducasse/libpeerconnection.log
+angular_ducasse/testem.log
+angular_ducasse/typings
+
+# System files
+angular_ducasse/.DS_Store
+angular_ducasse/Thumbs.db
