@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IngredientService } from '../services/ingredient.service';
 
 @Component({
   selector: 'app-creer-ingredient',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class CreerIngredientComponent {
 
+  constructor(private ingredientService:IngredientService){
+    
+  }
+
+  submit(data:any){
+    this.ingredientService.postIntgredient(data);
+    console.log(data);
+  }
 }
