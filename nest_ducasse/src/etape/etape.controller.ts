@@ -1,15 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { Etape } from './entities/etape.entity';
 import { EtapeService } from './etape.service';
-import { CreateEtapeDto } from './dto/create-etape.dto';
-import { UpdateEtapeDto } from './dto/update-etape.dto';
 
 @Controller('etape')
 export class EtapeController {
   constructor(private readonly etapeService: EtapeService) {}
 
   @Post()
-  create(@Body() createEtapeDto: CreateEtapeDto) {
-    return this.etapeService.create(createEtapeDto);
+  create(@Body() etape: Etape) {
+    return this.etapeService.create(etape);
   }
 
   @Get()
@@ -23,8 +22,8 @@ export class EtapeController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateEtapeDto: UpdateEtapeDto) {
-    return this.etapeService.update(+id, updateEtapeDto);
+  update(@Param('id') id: string, @Body() etape: Etape) {
+    return this.etapeService.update(+id, etape);
   }
 
   @Delete(':id')
