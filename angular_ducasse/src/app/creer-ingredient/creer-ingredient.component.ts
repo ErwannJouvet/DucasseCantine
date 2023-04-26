@@ -13,7 +13,7 @@ export class CreerIngredientComponent {
   }
 
   submit(data:any){
-    this.ingredientService.postIntgredient(data);
+    this.ingredientService.postIngredient(data);
     console.log(data);
   }
 }

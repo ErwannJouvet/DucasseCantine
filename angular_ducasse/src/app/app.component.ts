@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserInterface } from './interfaces/user-interface';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular_ducasse';
+
+  isLoggedIn(user:UserInterface):boolean{
+    let isLoggedIn=false;
+    if (user.logToken!=null){
+      isLoggedIn = true;
+    }
+    return isLoggedIn;
+  }
 }

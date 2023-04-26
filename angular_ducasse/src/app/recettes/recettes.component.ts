@@ -18,4 +18,23 @@ export class RecettesComponent {
   ngOnInit(){
     this.recettes = this.recetteService.getRecettes();
   }
+
+  isAllergene(recette: RecetteInterface): boolean{
+    let isAllergene = false;
+    for(let i = 0; i < recette.ingredients.length; i++){
+      if (recette.ingredients[i].allergene){
+        isAllergene = true;
+        break;
+      }
+    }
+    return isAllergene;
+  }
+
+  isDescriptionTooLong(recette: RecetteInterface): boolean{
+    let isDescriptionTooLong = false;
+    if (recette.description.length > 100){
+      isDescriptionTooLong = true;
+    }
+    return isDescriptionTooLong;
+  }
 }

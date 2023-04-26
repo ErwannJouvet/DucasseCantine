@@ -1,21 +1,50 @@
-<div class="flex justify-center bg-red-100 flex-wrap">
-  <div class="p-20 w-20 md:w-1/3" *ngFor="let detail of recetteDetail">
-    <div class="bg-white rounded-lg shadow-lg">
-      <img
-        src="../../assets/images/{{ detail.photo }}"
-        alt=""
-        class="rounded-t-lg"
-      />
-      <div class="p-6">
-        <h2 class="font-bold mb-2 text-2xl text-red-800">
-          {{ detail.nom }}
-        </h2>
-        <h2 class="font-bold mb-2 text-red-800">
-          Temps de préparation : {{ detail.temps_preparation }} min | Temps de
-          cuisson {{ detail.temps_cuisson }} min
-        </h2>
-        <p class="text-red-500">{{ detail.description }}</p>
-        <p class="text-red-500">{{ detail.pvc }} € TTC</p>
+<!--  -->
+<div *ngFor="let detail of recetteDetail">
+  <div
+    class="flex-row items-center justify-center min-h-screen from-[#F9F5F3] via-[#F9F5F3] to-[#F9F5F3] bg-lightbluepastel"
+  >
+    <div
+      class="w-full max-w-md mx-auto bg-white rounded-3xl shadow-xl overflow-hidden"
+    >
+      <div
+        class="h-[236px]"
+        style="
+          background-image: url({{ detail.photo }});
+          background-size: cover;
+          background-position: center;
+        "
+      ></div>
+      <div class="max-w-md mx-auto bg-[#FFF] border-1 border-[#000]">
+        <div class="p-4 sm:p-6">
+          <p>Temps de préparation : {{ detail.temps_preparation }} min</p>
+          <p>Temps de cuisson : {{ detail.temps_cuisson }} min</p>
+        </div>
+        <div class="p-4 sm:p-6">
+          <p class="font-bold text-gray-700 text-[22px] leading-7 mb-1">
+            {{ detail.nom }}
+          </p>
+          <p class="text-[#7C7C80] font-[15px] mt-6">
+            {{ detail.description }}
+          </p>
+
+          <ng-template #elseBlock></ng-template>
+        </div>
+      </div>
+    </div>
+    <div *ngFor="let ingredient of detail.ingredients"></div>
+    <!-- Ingrédients -->
+    <div *ngFor="let ingredient of detail.ingredients">
+      <div class="bg-darkblue">
+        <h2>{{ ingredient.nom }}</h2>
+        <img src="{{ ingredient.photo }}" alt="" class="h-[50px]" />
+        <span
+          *ngIf="ingredient.allergene; else elseBlock"
+          class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+        >
+          ❗ Allergène
+        </span>
+        <ng-template #elseBlock></ng-template>
+        <p>{{ ingredient.dosage }}</p>
       </div>
     </div>
   </div>

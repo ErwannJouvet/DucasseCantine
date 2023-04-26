@@ -1,6 +1,6 @@
 <header>
   <nav
-    class="flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 text-lg text-gray-700 bg-white"
+    class="flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 text-lg text-gray-700 border-2 border-darkblue bg-[#FFF]"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,14 +18,17 @@
       />
     </svg>
 
-    <div class="hidden w-full md:flex md:items-center md:w-auto" id="menu">
+    <div
+      class="hidden w-full md:flex md:items-center md:w-auto text-darkblue"
+      id="menu"
+    >
       <ul
         class="pt-4 text-base text-gray-700 md:flex md:justify-between md:pt-0"
       >
         <li>
           <a class="md:p-4 py-2 block hover:text-purple-400" routerLink="/home"
-            >Accueil</a
-          >
+            ><img src="/assets/images/ducasse.png" alt="" class="h-[30px]"
+          /></a>
         </li>
         <li>
           <a
@@ -42,13 +45,22 @@
           >
         </li>
         <li>
-          <a class="md:p-4 py-2 block hover:text-purple-400" routerLink="/login"
-            >Connexion</a
+          <a
+            class="md:p-4 py-2 block hover:text-purple-400 start"
+            routerLink="/login"
+            *ngIf="isLoggedIn(); else isNotLoggedIn"
+            >Déconnexion</a
           >
+          <ng-template #isNotLoggedIn>
+            <a
+              class="md:p-4 py-2 block hover:text-purple-400 start"
+              routerLink="/login"
+              >Connexion</a
+            >
+          </ng-template>
         </li>
       </ul>
     </div>
   </nav>
 </header>
-
 <router-outlet> </router-outlet>

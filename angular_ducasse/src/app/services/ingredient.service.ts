@@ -15,7 +15,7 @@ export class IngredientService {
     ]
   }
 
-  postIntgredient(data:any){
+  postIngredient(data:any){
     return this._http.post('',data);
   }
 

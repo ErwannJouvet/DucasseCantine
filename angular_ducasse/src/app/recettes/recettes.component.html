@@ -1,19 +1,46 @@
-<div class="flex justify-between bg-red-100 flex-wrap">
-  <div class="p-20 w-20 md:w-1/3" *ngFor="let recette of recettes">
-    <div class="bg-white rounded-lg shadow-lg">
-      <img
-        src="../../assets/images/{{ recette.photo }}"
-        alt=""
-        class="rounded-t-lg"
-      />
-      <div class="p-6">
-        <h2 class="font-bold mb-2 text-2xl text-red-800">{{ recette.nom }}</h2>
-        <p class="text-red-500">{{ recette.description }}</p>
-        <a
-          routerLink="/recette/{{ recette.id }}"
-          class="text-red-600 hover:text-red-500 underline text-lg"
-          >Detail</a
-        >
+<div class="flex items-center m-10 text-6xl text-blue">
+  <h1 class="mx-auto">Liste des créations Ducasse</h1>
+</div>
+
+<div
+  class="grid grid-cols-2 items-center justify-center min-h-screen from-[#F9F5F3] via-[#F9F5F3] to-[#F9F5F3] bg-lightbluepastel"
+>
+  <div
+    class="w-full max-w-md mx-auto bg-white rounded-3xl shadow-xl overflow-hidden"
+    *ngFor="let recette of recettes"
+  >
+    <div class="max-w-md mx-auto bg-[#FFF] h-[32rem]">
+      <div
+        class="h-[236px]"
+        style="
+          background-image: url({{ recette.photo }});
+          background-size: cover;
+          background-position: center;
+        "
+      ></div>
+      <div class="p-4 sm:p-6">
+        <p class="font-bold text-blue text-[22px] leading-7 mb-1">
+          {{ recette.nom }}
+        </p>
+        <p class="text-sm text-blue">
+          Temps de préparation : {{ recette.temps_preparation }} min | Temps de
+          cuisson : {{ recette.temps_cuisson }} min
+        </p>
+        <span
+          *ngIf="isAllergene(recette); else notAllergene"
+          class="block mt-10 w-full px-4 py-3 font-medium text-center text-lightbluepastel bg-[#D11149] rounded-[14px]"
+          >Contient allergènes
+        </span>
+        <ng-template #notAllergene>
+          <span
+            class="block mt-10 w-full px-4 py-3 font-medium text-center text-lightbluepastel bg-darkblue rounded-[14px]"
+            >Sans allergènes
+          </span>
+        </ng-template>
+
+        <p class="text-[#7C7C80] font-[15px] mt-6 mb-1">
+          {{ recette.description.substr(0, 100) }}...
+        </p>
       </div>
     </div>
   </div>
