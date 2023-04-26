@@ -18,5 +18,4 @@ export class RecettesComponent {
   ngOnInit(){
     this.recettes = this.recetteService.getRecettes();
   }
-
 }
