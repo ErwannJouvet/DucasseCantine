@@ -11,7 +11,8 @@ export class IngredientService {
   ) {} 
 
   async create(ingredient: Ingredient) {
-    this.ingredientRepository.save(ingredient);
+    const newIngredient = await this.ingredientRepository.save(ingredient);
+    return newIngredient;
   }
 
   async findAll() {
@@ -20,6 +21,11 @@ export class IngredientService {
 
   async findOne(id: number) {
     return await this.ingredientRepository.findOneBy({ "id": id })
+  }
+
+  async findOneByName(name: string) {
+    const ingredient = await this.ingredientRepository.findOneBy({ nom: name });
+    return ingredient;
   }
 
   async update(id: number, ingredient: Ingredient) {

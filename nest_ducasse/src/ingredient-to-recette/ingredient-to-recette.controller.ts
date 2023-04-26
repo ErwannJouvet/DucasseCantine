@@ -1,15 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { IngredientToRecette } from './entities/ingredient-to-recette.entity';
 import { IngredientToRecetteService } from './ingredient-to-recette.service';
-import { CreateIngredientToRecetteDto } from './dto/create-ingredient-to-recette.dto';
-import { UpdateIngredientToRecetteDto } from './dto/update-ingredient-to-recette.dto';
 
 @Controller('ingredient-to-recette')
 export class IngredientToRecetteController {
   constructor(private readonly ingredientToRecetteService: IngredientToRecetteService) {}
 
   @Post()
-  create(@Body() createIngredientToRecetteDto: CreateIngredientToRecetteDto) {
-    return this.ingredientToRecetteService.create(createIngredientToRecetteDto);
+  create(@Body() ingredientToRecette: IngredientToRecette) {
+    return this.ingredientToRecetteService.create(ingredientToRecette);
   }
 
   @Get()
@@ -23,8 +22,8 @@ export class IngredientToRecetteController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateIngredientToRecetteDto: UpdateIngredientToRecetteDto) {
-    return this.ingredientToRecetteService.update(+id, updateIngredientToRecetteDto);
+  update(@Param('id') id: string, @Body() ingredientToRecette: IngredientToRecette) {
+    return this.ingredientToRecetteService.update(+id, ingredientToRecette);
   }
 
   @Delete(':id')

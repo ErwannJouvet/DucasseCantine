@@ -7,7 +7,7 @@ export class Etape {
   id: number;
 
   @Column()
-  numero_order: number;
+  numero_ordre: number;
 
   @Column('longtext')
   instructions: string;

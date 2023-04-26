@@ -1,15 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { Recette } from './entities/recette.entity';
 import { RecetteService } from './recette.service';
-import { CreateRecetteDto } from './dto/create-recette.dto';
-import { UpdateRecetteDto } from './dto/update-recette.dto';
 
 @Controller('recette')
 export class RecetteController {
   constructor(private readonly recetteService: RecetteService) {}
 
   @Post()
-  create(@Body() createRecetteDto: CreateRecetteDto) {
-    return this.recetteService.create(createRecetteDto);
+  create(@Body() data: any) {
+    return this.recetteService.create(data);
   }
 
   @Get()
@@ -23,8 +22,8 @@ export class RecetteController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateRecetteDto: UpdateRecetteDto) {
-    return this.recetteService.update(+id, updateRecetteDto);
+  update(@Param('id') id: string, @Body() recette: Recette) {
+    return this.recetteService.update(+id, recette);
   }
 
   @Delete(':id')

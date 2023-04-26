@@ -6,8 +6,8 @@ import { IngredientService } from './ingredient.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Ingredient])],
-  providers: [IngredientService],
   controllers: [IngredientController],
+  providers: [IngredientService],
   exports: [IngredientService]
 })
 export class IngredientModule {}
