@@ -9,6 +9,7 @@ import { RangModule } from './rang/rang.module';
 import { RecetteModule } from './recette/recette.module';
 import { RestaurantModule } from './restaurant/restaurant.module';
 import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -28,7 +29,7 @@ import { UserModule } from './user/user.module';
     UserModule, 
     RangModule, 
     RestaurantModule, 
-    IngredientToRecetteModule
+    IngredientToRecetteModule, AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],
