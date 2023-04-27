@@ -3,7 +3,7 @@
 </div>
 
 <div
-  class="grid grid-cols-2 items-center justify-center min-h-screen from-[#F9F5F3] via-[#F9F5F3] to-[#F9F5F3] bg-lightbluepastel"
+  class="grid grid-cols-4 gap-4 mx-4 items-center justify-center min-h-screen from-[#F9F5F3] via-[#F9F5F3] to-[#F9F5F3] bg-lightbluepastel"
 >
   <div
     class="w-full max-w-md mx-auto bg-white rounded-3xl shadow-xl overflow-hidden"
@@ -11,11 +11,9 @@
   >
     <div class="max-w-md mx-auto bg-[#FFF] h-[32rem] cursor-pointer" (click)="detailRecette(recette.id)">
       <div
-        class="h-[236px]"
+        class="h-[236px] bg-cover bg-center"
         style="
           background-image: url({{ recette.photo }});
-          background-size: cover;
-          background-position: center;
         "
       ></div>
       <div class="p-4 sm:p-6">
@@ -28,17 +26,17 @@
         </p>
         <span
           *ngIf="isAllergene(recette); else notAllergene"
-          class="block mt-10 w-full px-4 py-3 font-medium text-center text-lightbluepastel bg-[#D11149] rounded-[14px]"
+          class="block mt-4 w-full px-4 py-3 font-medium text-center text-lightbluepastel bg-[#D11149] rounded-[14px]"
           >Contient allergènes
         </span>
         <ng-template #notAllergene>
           <span
-            class="block mt-10 w-full px-4 py-3 font-medium text-center text-lightbluepastel bg-darkblue rounded-[14px]"
+            class="block mt-4 w-full px-4 py-3 font-medium text-center text-lightbluepastel bg-darkblue rounded-[14px]"
             >Sans allergènes
           </span>
         </ng-template>
 
-        <p class="text-[#7C7C80] font-[15px] mt-6 mb-1">
+        <p class="text-[#7C7C80] font-[15px] mt-4 mb-1">
           {{ recette.description.substr(0, 100) }}...
         </p>
       </div>

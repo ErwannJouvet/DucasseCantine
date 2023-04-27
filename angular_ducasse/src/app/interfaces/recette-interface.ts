@@ -1,20 +1,15 @@
+import { EtapeInterface } from "./etape-interface";
+import { IngredientInterface } from "./ingredient-interface";
+
 export interface RecetteInterface {
-    id: number;
+    id?: number;
     nom: string;
     description: string;
     photo: string;
     temps_preparation: number;
     temps_cuisson: number;
     date: string;
-    ingredients: {
-      nom: string;
-      photo: string;
-      allergene: boolean;
-      dosage: string;
-    }[];
-    etapes: {
-      numero_ordre: number;
-      instructions: string;
-    }[];
+    ingredients: IngredientInterface[];
+    etapes: EtapeInterface[];
   }
   

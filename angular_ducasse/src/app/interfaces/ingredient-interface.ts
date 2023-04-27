@@ -1,6 +1,7 @@
 export interface IngredientInterface {
-    id:number;
-    nom:string;
-    photo:string;
-    allergene:boolean;
+    id?: number;
+    nom: string;
+    photo: string;
+    allergene: boolean;
+    dosage?: string;
 }

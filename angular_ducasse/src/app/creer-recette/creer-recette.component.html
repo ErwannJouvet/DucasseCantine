@@ -1,103 +1,62 @@
-<div class="bg-red-100 min-h-screen flex items-center text-lg">
-  <form
-    #createRecette="ngForm"
-    (ngSubmit)="submit(createRecette.value)"
-    class="p-10 md:w-2/3 lg:w-1/2 mx-auto rounded"
-  >
-    <div class="shadow">
-      <div
-        class="flex items-center bg-red-400 rounded-t-lg border-red-500 border-b"
-      >
-        <label for="nom" class="w-20 text-right mr-8 p-4 text-red-200"
-          >Nom de la création</label
-        >
-        <input
-          ngModel
-          type="text"
-          name="nom"
-          id="nom"
-          placeholder="Ajouter le nom de la création"
-          class="flex-1 p-4 pl-0 bg-transparent placeholder-red-300 outline-none text-white overflow-ellipsis overflow-hidden"
-        />
-      </div>
-      <div class="flex items-center bg-red-400 border-red-500 border-b">
-        <label for="description" class="w-20 text-right p-4 mr-8 text-red-200"
-          >Description</label
-        >
-        <input
-          ngModel
-          type="text"
-          name="description"
-          id="description"
-          placeholder="Ajouter une courte description de la création"
-          class="flex-1 p-4 pl-0 bg-transparent placeholder-red-300 outline-none text-white overflow-ellipsis overflow-hidden"
-        />
-      </div>
-      <div
-        class="flex items-center bg-red-400 rounded-b-lg border-red-500 mb-10"
-      >
-        <label for="description" class="w-20 text-right p-4 mr-8 text-red-200"
-          >photo</label
-        >
-        <input
-          ngModel
-          type="text"
-          name="photo"
-          id="photo"
-          placeholder="Exemple : coquillettes.jpg"
-          class="flex-1 p-4 pl-0 bg-transparent placeholder-red-300 outline-none text-white overflow-ellipsis overflow-hidden"
-        />
-      </div>
-      <div
-        class="flex items-center bg-red-400 rounded-b-lg border-red-500 mb-10"
-      >
-        <label for="description" class="w-20 text-right p-4 mr-8 text-red-200"
-          >Temps de préparation</label
-        >
-        <input
-          ngModel
-          type="text"
-          name="temps_preparation"
-          id="temps_preparation"
-          placeholder="En minutes"
-          class="flex-1 p-4 pl-0 bg-transparent placeholder-red-300 outline-none text-white overflow-ellipsis overflow-hidden"
-        />
-      </div>
-      <div
-        class="flex items-center bg-red-400 rounded-b-lg border-red-500 mb-10"
-      >
-        <label for="description" class="w-20 text-right p-4 mr-8 text-red-200"
-          >Temps de cuisson</label
-        >
-        <input
-          ngModel
-          type="text"
-          name="temps_cuisson"
-          id="temps_cuisson"
-          placeholder="En minutes"
-          class="flex-1 p-4 pl-0 bg-transparent placeholder-red-300 outline-none text-white overflow-ellipsis overflow-hidden"
-        />
-      </div>
-      <div
-        class="flex items-center bg-red-400 rounded-b-lg border-red-500 mb-10"
-      >
-        <label for="description" class="w-20 text-right p-4 mr-8 text-red-200"
-          >Prix de vente conseillé</label
-        >
-        <input
-          ngModel
-          type="text"
-          name="pvc"
-          id="pvc"
-          placeholder=""
-          class="flex-1 p-4 pl-0 bg-transparent placeholder-red-300 outline-none text-white overflow-ellipsis overflow-hidden"
-        />
+<div class="flex justify-center mt-4">
+  <form [formGroup]="recetteForm" (ngSubmit)="submit()">
+    <div class="mb-4">
+      <label for="name" class="text-blue text-sm font-bold mb-2">Nom :</label>
+      <input type="text" name="name" formControlName="nom" placeholder="Nom de la recette" class="shadow appearance-none border-blue border-2 rounded-md w-full py-2 px-3 text-blue leading-tight focus:outline-none focus:shadow-outline">
+    </div>
+    <div>
+      <label for="description" class="text-blue text-sm font-bold mb-2">Description :</label>
+      <input type="text" name="description" formControlName="description" placeholder="Description courte" class="shadow appearance-none border-blue border-2 rounded-md w-full py-2 px-3 text-blue leading-tight focus:outline-none focus:shadow-outline">
+    </div>
+    <div>
+      <label for="photo" class="text-blue text-sm font-bold mb-2">Image :</label>
+      <input type="text" name="photo" formControlName="photo" placeholder="recette.jpg" class="shadow appearance-none border-blue border-2 rounded-md w-full py-2 px-3 text-blue leading-tight focus:outline-none focus:shadow-outline">
+    </div>
+    <div>
+      <label for="temps_preparation" class="text-blue text-sm font-bold mb-2">Temps de préparation :</label>
+      <input type="text" name="temps_preparation" formControlName="temps_preparation" placeholder="Temps en minutes" class="shadow appearance-none border-blue border-2 rounded-md w-full py-2 px-3 text-blue leading-tight focus:outline-none focus:shadow-outline">
+    </div>
+    <div>
+      <label for="temps_cuisson" class="text-blue text-sm font-bold mb-2">Temps de cuisson :</label>
+      <input type="text" name="temps_cuisson" formControlName="temps_cuisson" placeholder="Temps en minutes" class="shadow appearance-none border-blue border-2 rounded-md w-full py-2 px-3 text-blue leading-tight focus:outline-none focus:shadow-outline">
+    </div>
+    <h3 class="mt-4 text-2xl underline">Ingrédients</h3>
+    <div formArrayName="ingredients">
+      <div *ngFor="let ingredient of ingredients().controls; let i = index" [formGroupName]="i" class="grid grid-cols-2 gap-4">
+        <hr *ngIf="i > 0" class="col-span-2 mt-4">
+        <div>
+          <label for="nom" class="text-blue text-sm font-bold mb-2">Nom :</label>
+          <input type="text" name="nom" formControlName="nom" placeholder="Ex : Tomates" class="shadow appearance-none border-blue border-2 rounded-md w-full py-2 px-3 text-blue leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div>
+          <label for="dosage" class="text-blue text-sm font-bold mb-2">Dosage :</label>
+          <input type="text" name="dosage" formControlName="dosage" placeholder="Ex : 80g, Une pincée, etc." class="shadow appearance-none border-blue border-2 rounded-md w-full py-2 px-3 text-blue leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div>
+          <input type="checkbox" name="allergene" id="allergene" formControlName="allergene" class="mr-2 leading-tight">
+          <span class="text-sm">Allergène</span>
+        </div>
+        <div>
+          <input type="button" (click)="removeIngredient(i)" value="&times;" class="text-3xl justify-self-center"/>
+        </div>
       </div>
     </div>
-    <button
-      class="bg-red-400 block w-full rounded py-4 text-white font-bold shadow"
-    >
-      Submit
-    </button>
+    <input (click)="addIngredient()" value="Ajouter" type="button" class="mt-4 shadow-md appearance-none border-blue border-2 rounded-md py-2 px-3 text-blue bg-gold leading-tight focus:outline-none focus:shadow-outline mb-4"/>
+    <h3 class="text-2xl underline">Etapes</h3>
+    <div formArrayName="etapes">
+      <div *ngFor="let etape of etapes().controls; let i = index" [formGroupName]="i" class="grid grid-cols-6 items-center">
+        <!-- <hr *ngIf="i > 0" class="mt-4 mb-2 col-span-6 w-9/12"> -->
+        <div class="col-span-5 mt-4">
+          <label for="instructions" class="text-blue text-sm font-bold mb-2">Instructions :</label>
+          <input type="text" placeholder="Ex : Mélanger la pâte avec..." name="instructions" formControlName="instructions" class="shadow appearance-none border-blue border-2 rounded-md w-full py-2 px-3 text-blue leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div class="col-span-1 flex justify-center items-center">
+          <input type="button" (click)="removeEtape(i)" value="&times;" class="text-3xl mt-[1rem]">
+        </div>
+      </div>
+    </div>
+    <input (click)="addEtape()" value="Ajouter" type="button" class="mt-4 shadow-md appearance-none border-blue border-2 rounded-md py-2 px-3 text-blue bg-gold leading-tight focus:outline-none focus:shadow-outline mb-2">
+    <br><br>
+    <button type="submit" class="shadow-md appearance-none border-blue border-2 w-full rounded-md py-2 px-3 text-blue bg-gold leading-tight focus:outline-none focus:shadow-outline text-xl font-bold uppercase mb-4">Créer</button>
   </form>
 </div>
