@@ -21,7 +21,7 @@ export class UserService {
     let users = await this.userRepository.find(
       {relations:{restaurant:true, rang:true}, where : [{"email" : username}]}
     )
-    if (username.length == 1) {
+    if (users.length == 1) {
       return users[0];
     } else {
       return undefined;

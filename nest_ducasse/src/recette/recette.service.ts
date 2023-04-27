@@ -149,7 +149,6 @@ export class RecetteService {
       }
       else {
         const newIngredient = await this.ingredientService.create(ingredient);
-        console.log(newIngredient);
         ingredients.push(newIngredient);
       }
     }

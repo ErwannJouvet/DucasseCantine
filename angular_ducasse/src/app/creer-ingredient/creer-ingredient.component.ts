@@ -14,6 +14,5 @@ export class CreerIngredientComponent {
 
   submit(data:any){
     this.ingredientService.postIngredient(data);
-    console.log(data);
   }
 }
