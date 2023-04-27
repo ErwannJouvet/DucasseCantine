@@ -17,8 +17,8 @@ export class RecetteDetailComponent {
 
   ngOnInit(){
     this.recetteId = this.activeRoute.snapshot.paramMap.get('id');
-    this.recetteDetail = this.recetteService.getRecettes().filter(recette => recette.id == this.recetteId);
-    console.log(this.recetteDetail);
+    // this.recetteDetail = this.recetteService.getRecettes().filter(recette => recette.id == this.recetteId);
+    console.log(this.recetteId);
   }
 
 }

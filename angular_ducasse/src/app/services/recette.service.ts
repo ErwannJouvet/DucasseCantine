@@ -222,6 +222,6 @@ export class RecetteService {
 
 
   postRecette(data:any){;
-    return this._http.post('',data);
+    return this._http.post('', data);
   }
 }

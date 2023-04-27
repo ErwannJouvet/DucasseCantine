@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { RecetteInterface } from '../interfaces/recette-interface';
 import { RecetteService } from '../services/recette.service';
 
@@ -11,7 +12,10 @@ export class RecettesComponent {
 
   recettes:any;
 
-  constructor(private recetteService:RecetteService){
+  constructor(
+    private recetteService:RecetteService,
+    private router: Router
+  ){
 
   }
 
@@ -40,5 +44,9 @@ export class RecettesComponent {
       isDescriptionTooLong = true;
     }
     return isDescriptionTooLong;
+  }
+
+  detailRecette(id: number) {
+    this.router.navigate([`/recette/${id}`]);
   }
 }
