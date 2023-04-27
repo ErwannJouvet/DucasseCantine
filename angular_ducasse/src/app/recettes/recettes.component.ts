@@ -9,14 +9,18 @@ import { RecetteService } from '../services/recette.service';
 })
 export class RecettesComponent {
 
-  recettes:RecetteInterface[]=[];
+  recettes:any;
 
   constructor(private recetteService:RecetteService){
 
   }
 
   ngOnInit(){
-    this.recettes = this.recetteService.getRecettes();
+    let recetteData = this.recetteService.getRecettes();
+    
+    recetteData.subscribe(res => {
+      this.recettes = res;
+    });
   }
 
   isAllergene(recette: RecetteInterface): boolean{
