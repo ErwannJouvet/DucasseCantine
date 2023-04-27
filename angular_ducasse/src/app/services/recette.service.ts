@@ -221,6 +221,10 @@ export class RecetteService {
       //   }
   }
 
+  getRecette(id: number){
+    return this._http.get(`http://localhost:3000/recette/${id}`);
+  }
+
 
   postRecette(data: RecetteInterface) {
     return this._http.post('http://localhost:3000/recette', data)
@@ -242,4 +246,6 @@ export class RecetteService {
     // Return an observable with a user-facing error message.
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
+
+  
 }

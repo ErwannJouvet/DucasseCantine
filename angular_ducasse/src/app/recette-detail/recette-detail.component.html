@@ -1,51 +1,64 @@
-<!--  -->
-<div *ngFor="let detail of recetteDetail">
-  <div
-    class="flex-row items-center justify-center min-h-screen from-[#F9F5F3] via-[#F9F5F3] to-[#F9F5F3] bg-lightbluepastel"
-  >
-    <div
-      class="w-full max-w-md mx-auto bg-white rounded-3xl shadow-xl overflow-hidden"
-    >
-      <div
-        class="h-[236px]"
-        style="
-          background-image: url({{ detail.photo }});
-          background-size: cover;
-          background-position: center;
-        "
-      ></div>
-      <div class="max-w-md mx-auto bg-[#FFF] border-1 border-[#000]">
-        <div class="p-4 sm:p-6">
-          <p>Temps de préparation : {{ detail.temps_preparation }} min</p>
-          <p>Temps de cuisson : {{ detail.temps_cuisson }} min</p>
-        </div>
-        <div class="p-4 sm:p-6">
-          <p class="font-bold text-gray-700 text-[22px] leading-7 mb-1">
-            {{ detail.nom }}
-          </p>
-          <p class="text-[#7C7C80] font-[15px] mt-6">
-            {{ detail.description }}
-          </p>
-
-          <ng-template #elseBlock></ng-template>
-        </div>
-      </div>
+<!-- Ingrédient -->
+<div class="mt-10 mx-10 grid grid-cols-2 items-center">
+  <img src="{{ recetteDetail.photo }}" alt="" srcset="" />
+  <div>
+    <h1 class="text-5xl mb-10">{{ recetteDetail.nom }}</h1>
+    <p class="text-justify">{{ recetteDetail.description }}</p>
+    <p>
+      Temps de préparation : {{ recetteDetail.temps_preparation }} | Temps de
+      cuisson : {{ recetteDetail.temps_cuisson }}
+    </p>
+    <div class="grid grid-cols-3">
+      <button
+        class="mt-10 w-full px-4 py-3 font-medium text-center text-lightbluepastel bg-darkblue rounded-[14px]"
+      >
+        Imprimer
+      </button>
+      <button
+        class="mt-10 w-full px-4 py-3 font-medium text-center text-lightbluepastel bg-darkblue rounded-[14px]"
+      >
+        Modifier
+      </button>
+      <button
+        class="mt-10 w-full px-4 py-3 font-medium text-center text-lightbluepastel bg-darkblue rounded-[14px]"
+      >
+        Supprimer
+      </button>
     </div>
-    <div *ngFor="let ingredient of detail.ingredients"></div>
-    <!-- Ingrédients -->
-    <div *ngFor="let ingredient of detail.ingredients">
-      <div class="bg-darkblue">
-        <h2>{{ ingredient.nom }}</h2>
-        <img src="{{ ingredient.photo }}" alt="" class="h-[50px]" />
-        <span
-          *ngIf="ingredient.allergene; else elseBlock"
-          class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
-        >
-          ❗ Allergène
-        </span>
-        <ng-template #elseBlock></ng-template>
-        <p>{{ ingredient.dosage }}</p>
-      </div>
+  </div>
+</div>
+<!-- Ingrédients -->
+<div class="m-10 pb-10 bg-lightgold rounded-xl">
+  <h1 class="text-5xl text-blue pt-10 m-10 text-center">Ingrédients</h1>
+  <div class="flex justify-center">
+    <div
+      class="bg-blue rounded-lg shadow-lg p-6 w-175 h-213 flex flex-col justify-center items-center m-5"
+      *ngFor="let ingredient of recetteDetail.ingredients"
+    >
+      <img
+        src="{{ ingredient.photo }}"
+        alt="{{ ingredient.name }}"
+        class="w-[50px] h-[50px] object-cover rounded-[10px]"
+      />
+      <h3
+        class="font-bold mt-4 text-center text-gold hyphens-auto break-all w-[10ch]"
+      >
+        {{ ingredient.nom }}
+      </h3>
+      <p class="text-center text-gold mt-2">{{ ingredient.dosage }}</p>
+      <p class="text-center text-gold mt-2">
+        {{ ingredient.allergene ? "❗ Allergene" : "" }}
+      </p>
+    </div>
+  </div>
+</div>
+<!-- Etapes -->
+<div>
+  <h1>Etapes</h1>
+  <div>
+    <div *ngFor="let etape of recetteDetail.etapes">
+      <p>Etape n°{{ etape.numero_ordre }}</p>
+      <p>{{ etape.instructions }}</p>
     </div>
   </div>
 </div>

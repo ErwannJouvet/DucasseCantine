@@ -9,7 +9,10 @@
     class="w-full max-w-md mx-auto bg-white rounded-3xl shadow-xl overflow-hidden"
     *ngFor="let recette of recettes"
   >
-    <div class="max-w-md mx-auto bg-[#FFF] h-[32rem] cursor-pointer" (click)="detailRecette(recette.id)">
+    <div
+      class="max-w-md mx-auto bg-[#FFF] h-[32rem] cursor-pointer"
+      (click)="detailRecette(recette.id)"
+    >
       <div
         class="h-[236px] bg-cover bg-center"
         style="
