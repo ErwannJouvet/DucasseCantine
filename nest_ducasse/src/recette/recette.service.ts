@@ -20,13 +20,20 @@ export class RecetteService {
   ) {}
 
   async findAll() {
-    return await this.recetteRepository.find(
-      { relations: ["etapes", "ingredientToRecette", "ingredient"]}
-    )
+    return await this.recetteRepository.createQueryBuilder('recette')
+                                       .leftJoinAndSelect('recette.ingredientToRecette', 'rti')
+                                       .leftJoinAndSelect('rti.ingredient', 'ingredient')
+                                       .leftJoinAndSelect('recette.etapes', 'etape')
+                                       .getMany();
   }
 
   async findOne(id: number) {
-    return await this.recetteRepository.findOneBy({ "id": id });
+    return await this.recetteRepository.createQueryBuilder('recette')
+                                       .leftJoinAndSelect('recette.ingredientToRecette', 'rti')
+                                       .leftJoinAndSelect('rti.ingredient', 'ingredient')
+                                       .leftJoinAndSelect('recette.etapes', 'etape')
+                                       .where('recette.id = :id', { id: id })
+                                       .getOne();
   }
 
   update(id: number, recette: Recette) {
