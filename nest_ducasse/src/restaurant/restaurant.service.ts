@@ -1,26 +1,53 @@
 import { Injectable } from '@nestjs/common';
-import { CreateRestaurantDto } from './dto/create-restaurant.dto';
-import { UpdateRestaurantDto } from './dto/update-restaurant.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { RestaurantEntity } from './entities/restaurant.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class RestaurantService {
-  create(createRestaurantDto: CreateRestaurantDto) {
-    return 'This action adds a new restaurant';
+  constructor(@InjectRepository(RestaurantEntity) private restaurantRepository : Repository<RestaurantEntity>) {
+  
   }
 
-  findAll() {
-    return `This action returns all restaurant`;
+  async getRestaurants() : Promise<RestaurantEntity[]> {
+    return await this.restaurantRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} restaurant`;
+  async getRestaurant(_id : number) : Promise<RestaurantEntity[]> {
+    return await this.restaurantRepository.find({
+      where : [{"id" : _id}]
+    });
   }
 
-  update(id: number, updateRestaurantDto: UpdateRestaurantDto) {
-    return `This action updates a #${id} restaurant`;
+  async createRestaurant(restaurant : RestaurantEntity) {
+    return await this.restaurantRepository.save(restaurant);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} restaurant`;
+  async updateRestaurant(restaurant : RestaurantEntity) {
+    this.restaurantRepository.save(restaurant);
   }
+
+  async deleteRestaurant(restaurant : RestaurantEntity) {
+    this.restaurantRepository.delete(restaurant);
+  }
+
+  // create(createRestaurantDto: CreateRestaurantDto) {
+  //   return 'This action adds a new restaurant';
+  // }
+
+  // findAll() {
+  //   return `This action returns all restaurant`;
+  // }
+
+  // findOne(id: number) {
+  //   return `This action returns a #${id} restaurant`;
+  // }
+
+  // update(id: number, updateRestaurantDto: UpdateRestaurantDto) {
+  //   return `This action updates a #${id} restaurant`;
+  // }
+
+  // remove(id: number) {
+  //   return `This action removes a #${id} restaurant`;
+  // }
 }

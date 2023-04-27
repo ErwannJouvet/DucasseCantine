@@ -1,34 +1,35 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
 import { RangService } from './rang.service';
-import { CreateRangDto } from './dto/create-rang.dto';
-import { UpdateRangDto } from './dto/update-rang.dto';
+import { RangEntity } from './entities/rang.entity';
 
 @Controller('rang')
 export class RangController {
-  constructor(private readonly rangService: RangService) {}
+  constructor(private readonly rangService: RangService) {
 
-  @Post()
-  create(@Body() createRangDto: CreateRangDto) {
-    return this.rangService.create(createRangDto);
   }
 
   @Get()
-  findAll() {
-    return this.rangService.findAll();
+  getAll() {
+    return this.rangService.getRangs();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.rangService.findOne(+id);
+  get(@Param() params) {
+    return this.rangService.getRang(params.id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateRangDto: UpdateRangDto) {
-    return this.rangService.update(+id, updateRangDto);
+  @Post()
+  create(@Body() rang : RangEntity) {
+    return this.rangService.createRang(rang);
+  }
+
+  @Put()
+  update(@Body() rang : RangEntity) {
+    return this.rangService.updateRang(rang);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.rangService.remove(+id);
+  delete(@Param() params) {
+    return this.rangService.deleteRang(params.id);
   }
 }

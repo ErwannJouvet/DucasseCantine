@@ -19,11 +19,15 @@ export class UserEntity {
     @Column('text')
     password : string;
 
-    @ManyToOne(restaurant => RestaurantEntity, restaurant => restaurant.id)
-    @JoinColumn({name : 'restaurant'})
+    //Le ManyToOne ci dessous est fait de la même manière que sur la doc typeOrm officiel et revient au même que celle vu en cours avec Joan comme pour le rang en dessous.
+    @ManyToOne(() => RestaurantEntity, (restaurant) => restaurant.users,{nullable:false})
     restaurant : RestaurantEntity;
 
-    @ManyToOne(rang => RangEntity, rang => rang.id)
+    // @ManyToOne(restaurant => RestaurantEntity, restaurant => restaurant.id)
+    // @JoinColumn({name : 'restaurant'})
+    // restaurant : RestaurantEntity;
+
+    @ManyToOne(rang => RangEntity, rang => rang.id,{nullable:false})
     @JoinColumn({name : 'rang'})
     rang : RangEntity
 

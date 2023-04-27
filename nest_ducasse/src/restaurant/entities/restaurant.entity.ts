@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { UserEntity } from "src/user/entities/user.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class RestaurantEntity {
@@ -19,6 +20,9 @@ export class RestaurantEntity {
 
     @Column({length : 255})
     photo : string;
+
+    @OneToMany(() => UserEntity, (user) => user.restaurant)
+    users : UserEntity[];
 
     // @ManyToOne(user => UserEntity, restaurant => restaurant.id)
     // @JoinColumn({ name : 'user'})

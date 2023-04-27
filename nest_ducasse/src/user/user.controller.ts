@@ -7,12 +7,13 @@ import { AuthGuard } from '@nestjs/passport';
 
 @Controller('user')
 export class UserController {
-  constructor(private userService: UserService) {
-
+  constructor(private readonly userService: UserService) {
+    //enlever le readonly si fou la merde
   }
 
+  //rajouter les params dans le get si fou la merde
   @Get()
-  getAll(@Param() params) {
+  getAll() {
       return this.userService.getUsers();
   }
 

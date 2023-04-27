@@ -1,26 +1,34 @@
 import { Injectable } from '@nestjs/common';
-import { CreateRangDto } from './dto/create-rang.dto';
-import { UpdateRangDto } from './dto/update-rang.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { RangEntity } from './entities/rang.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class RangService {
-  create(createRangDto: CreateRangDto) {
-    return 'This action adds a new rang';
+  constructor(@InjectRepository(RangEntity) private rangRepository : Repository<RangEntity>) {
+
   }
 
-  findAll() {
-    return `This action returns all rang`;
+  async getRangs() : Promise<RangEntity[]> {
+    return await this.rangRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} rang`;
+  async getRang(id : number) : Promise<RangEntity[]> {
+    return await this.rangRepository.find({
+      where : [{"id" : id}]
+    });
+
   }
 
-  update(id: number, updateRangDto: UpdateRangDto) {
-    return `This action updates a #${id} rang`;
+  async createRang(rang : RangEntity) {
+    return await this.rangRepository.save(rang);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} rang`;
+  async updateRang(rang : RangEntity) {
+    return await this.rangRepository.save(rang);
+  }
+
+  async deleteRang(rang : RangEntity) {
+    return await this.rangRepository.delete(rang);
   }
 }

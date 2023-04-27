@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { UserEntity } from "src/user/entities/user.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class RangEntity {
@@ -7,6 +8,9 @@ export class RangEntity {
 
     @Column({length : 255})
     fonction : string;
+
+    @OneToMany(() => UserEntity, (user) => user.rang)
+    users : UserEntity[];
 
     // @ManyToOne(user => UserEntity, rang => rang.id)
     // @JoinColumn({name : 'user'})
