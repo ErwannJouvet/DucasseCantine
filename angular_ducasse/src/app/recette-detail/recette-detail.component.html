@@ -1,12 +1,17 @@
 <!-- Ingrédient -->
 <div class="mt-10 mx-10 grid grid-cols-2 items-center">
-  <img src="{{ recetteDetail.photo }}" alt="" srcset="" class="rounded-md border-2 border-blue" />
+  <img
+    src="{{ recetteDetail.photo }}"
+    alt=""
+    srcset=""
+    class="rounded-md border-2 border-blue"
+  />
   <div>
     <h1 class="text-5xl mb-10">{{ recetteDetail.nom }}</h1>
     <p class="text-justify">{{ recetteDetail.description }}</p>
     <p>
-      Temps de préparation : {{ recetteDetail.temps_preparation }} minutes | Temps de
-      cuisson : {{ recetteDetail.temps_cuisson }} minutes
+      Temps de préparation : {{ recetteDetail.temps_preparation }} minutes |
+      Temps de cuisson : {{ recetteDetail.temps_cuisson }} minutes
     </p>
     <div class="grid grid-cols-3 gap-2">
       <button
@@ -56,7 +61,10 @@
 <div class="m-10 pb-10 bg-blue rounded-xl">
   <h1 class="text-5xl text-gold pt-10 m-10 text-center">Etapes</h1>
   <div>
-    <div *ngFor="let etape of recetteDetail.etapes" class="m-6 rounded-md p-4 bg-gold">
+    <div
+      *ngFor="let etape of recetteDetail.etapes"
+      class="m-6 rounded-md p-4 bg-gold"
+    >
       <p class="text-lg mb-4 text-blue">Etape n°{{ etape.numero_ordre }}</p>
       <p class="text-blue text-justify">{{ etape.instructions }}</p>
     </div>

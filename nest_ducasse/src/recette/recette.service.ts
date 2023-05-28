@@ -11,12 +11,11 @@ import { Recette } from './entities/recette.entity';
 
 @Injectable()
 export class RecetteService {
-
   constructor(
     @InjectRepository(Recette) private recetteRepository: Repository<Recette>,
     private ingredientService: IngredientService,
     private ingredientToRecetteService: IngredientToRecetteService,
-    private etapeService: EtapeService
+    private etapeService: EtapeService,
   ) {}
 
   async findAll() {
@@ -25,7 +24,8 @@ export class RecetteService {
     //                                    .leftJoinAndSelect('rti.ingredient', 'ingredient')
     //                                    .leftJoinAndSelect('recette.etapes', 'etape')
     //                                    .getMany();
-    const queryBuilder = this.recetteRepository.createQueryBuilder('recette')
+    const queryBuilder = this.recetteRepository
+      .createQueryBuilder('recette')
       .leftJoinAndSelect('recette.ingredientToRecette', 'rti')
       .leftJoinAndSelect('rti.ingredient', 'ingredient')
       .leftJoinAndSelect('recette.etapes', 'etape');
@@ -45,20 +45,21 @@ export class RecetteService {
         nom: rti.ingredient.nom,
         photo: rti.ingredient.photo,
         allergene: rti.ingredient.allergene,
-        dosage: rti.dosage
+        dosage: rti.dosage,
       })),
       etapes: recette.etapes.map((etape) => ({
         id: etape.id,
         numero_ordre: etape.numero_ordre,
-        instructions: etape.instructions
+        instructions: etape.instructions,
       })),
     }));
 
-    return result;   
+    return result;
   }
 
   async findOne(id: number) {
-    const queryBuilder = this.recetteRepository.createQueryBuilder('recette')
+    const queryBuilder = this.recetteRepository
+      .createQueryBuilder('recette')
       .leftJoinAndSelect('recette.ingredientToRecette', 'rti')
       .leftJoinAndSelect('rti.ingredient', 'ingredient')
       .leftJoinAndSelect('recette.etapes', 'etape')
@@ -79,12 +80,12 @@ export class RecetteService {
         nom: rti.ingredient.nom,
         photo: rti.ingredient.photo,
         allergene: rti.ingredient.allergene,
-        dosage: rti.dosage
+        dosage: rti.dosage,
       })),
       etapes: recette.etapes.map((etape) => ({
         id: etape.id,
         numero_ordre: etape.numero_ordre,
-        instructions: etape.instructions
+        instructions: etape.instructions,
       })),
     };
 
@@ -109,31 +110,31 @@ export class RecetteService {
       temps_cuisson: data.temps_cuisson,
       date_ajout: data.date,
       ingredientToRecette: null,
-      etapes: null
+      etapes: null,
     };
     const recetteId = await this.recetteRepository.save(recette);
 
     const allIngredients = await this.ingredientService.findAll();
     const ingredients: any[] = await this.doIngredients(data, allIngredients);
-  
-    data.etapes.forEach(async etape => {
+
+    data.etapes.forEach(async (etape) => {
       const objEtape: Etape = {
         id: null,
         numero_ordre: etape.numero_ordre,
         instructions: etape.instructions,
-        recette: recetteId
+        recette: recetteId,
       };
       await this.etapeService.create(objEtape);
     });
-    
-    ingredients.forEach(async ingredient => {
+
+    ingredients.forEach(async (ingredient) => {
       const objIngredientToRecette: IngredientToRecette = {
         ingredienToRecetteId: null,
         ingredientId: ingredient.id,
         recetteId: recetteId.id,
         dosage: ingredient.dosage,
         ingredient: null,
-        recette: null
+        recette: null,
       };
       this.ingredientToRecetteService.create(objIngredientToRecette);
     });
@@ -141,18 +142,18 @@ export class RecetteService {
 
   async doIngredients(data, allIngredients) {
     const ingredients: any[] = [];
-    for(let ingredient of data.ingredients) {
-      const ingredientExist = allIngredients.filter(fIngredient => fIngredient.nom === ingredient.nom)
-      if(ingredientExist[0]) {
-        ingredientExist[0]["dosage"] = ingredient.dosage; 
-        ingredients.push( ingredientExist[0] );
-      }
-      else {
+    for (const ingredient of data.ingredients) {
+      const ingredientExist = allIngredients.filter(
+        (fIngredient) => fIngredient.nom === ingredient.nom,
+      );
+      if (ingredientExist[0]) {
+        ingredientExist[0]['dosage'] = ingredient.dosage;
+        ingredients.push(ingredientExist[0]);
+      } else {
         const newIngredient = await this.ingredientService.create(ingredient);
         ingredients.push(newIngredient);
       }
     }
-    return ingredients
+    return ingredients;
   }
-
 }

@@ -15,20 +15,22 @@ export class RecettesComponent {
   constructor(
     private recetteService:RecetteService,
     private router: Router
-  ){
+  ){}
 
-  }
-
+  // Charge les recettes au chargement de la page
   ngOnInit(){
     let recetteData = this.recetteService.getRecettes();
     
+    // Souscription a l'observable pour récupérer les données
     recetteData.subscribe(res => {
       this.recettes = res;
     });
   }
 
+  // Vérifie si la recette contient un allergène
   isAllergene(recette: RecetteInterface): boolean{
     let isAllergene = false;
+    // Parcours les ingrédients de la recette
     for(let i = 0; i < recette.ingredients.length; i++){
       if (recette.ingredients[i].allergene){
         isAllergene = true;
@@ -38,14 +40,17 @@ export class RecettesComponent {
     return isAllergene;
   }
 
+  // Vérifie si la description est trop longue
   isDescriptionTooLong(recette: RecetteInterface): boolean{
     let isDescriptionTooLong = false;
+    // Si la description est plus longue que 100 caractères
     if (recette.description.length > 100){
       isDescriptionTooLong = true;
     }
     return isDescriptionTooLong;
   }
 
+  // Redirige vers la page de détail de la recette avec l'id de la recette
   detailRecette(id: number) {
     this.router.navigate([`/recette/${id}`]);
   }

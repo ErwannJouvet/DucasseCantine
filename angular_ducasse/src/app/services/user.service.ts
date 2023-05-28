@@ -13,7 +13,7 @@ export class UserService {
     return[
       {
         id:1,
-        logToken:"stonks",
+        logToken:"",
       }
     ]
   }

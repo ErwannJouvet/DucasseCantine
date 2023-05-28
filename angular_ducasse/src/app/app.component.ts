@@ -9,6 +9,7 @@ import { UserInterface } from './interfaces/user-interface';
 export class AppComponent {
   title = 'angular_ducasse';
 
+  // Vérifie si l'utilisateur est connecté
   isLoggedIn(user:UserInterface):boolean{
     let isLoggedIn=false;
     if (user.logToken!=null){

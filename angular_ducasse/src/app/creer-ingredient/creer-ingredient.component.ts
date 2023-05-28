@@ -12,7 +12,9 @@ export class CreerIngredientComponent {
     
   }
 
+  // Fonction d'envoi de l'ingrédient
   submit(data:any){
     this.ingredientService.postIngredient(data);
   }
+
 }

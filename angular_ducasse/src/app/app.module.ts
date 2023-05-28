@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { RecetteDetailComponent } from './recette-detail/recette-detail.component';
 import { RecettesComponent } from './recettes/recettes.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,6 @@ import { RecettesComponent } from './recettes/recettes.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    FormsModule,
     ReactiveFormsModule
   ],
   providers: [],

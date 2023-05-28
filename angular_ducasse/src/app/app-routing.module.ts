@@ -6,7 +6,8 @@ import { LoginComponent } from './login/login.component';
 import { RecetteDetailComponent } from './recette-detail/recette-detail.component';
 import { RecettesComponent } from './recettes/recettes.component';
 
-const routes: Routes = [
+// Déclaration des routes
+const routes: Routes = [ 
   {path:'', redirectTo:'home', pathMatch:'full'},
   {path:'home', redirectTo:'recettes', pathMatch:'full'},
   {path:'recettes', component:RecettesComponent},
@@ -15,8 +16,10 @@ const routes: Routes = [
   {path:'login', component:LoginComponent},
 ];
 
+// Déclaration du module de routage
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }

@@ -1,9 +1,19 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Put, UseGuards } from '@nestjs/common';
-import { UserService } from './user.service';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Put,
+  UseGuards,
+} from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserEntity } from './entities/user.entity';
-import { AuthGuard } from '@nestjs/passport';
+import { UserService } from './user.service';
 
 @Controller('user')
 export class UserController {
@@ -11,27 +21,31 @@ export class UserController {
     //enlever le readonly si fou la merde
   }
 
-  //rajouter les params dans le get si fou la merde
+  //Fontion qui permet de récupérer tous les utilisateurs
   @Get()
   getAll() {
-      return this.userService.getUsers();
+    return this.userService.getUsers();
   }
 
+  //Fonction qui permet de récupérer un utilisateur en fonction de son id
   @Get(':id')
   get(@Param() params) {
-      return this.userService.getUser(params.id);
+    return this.userService.getUser(params.id);
   }
 
+  //Fonction qui permet de créer un utilisateur
   @Post()
-  create(@Body() user : UserEntity) {
+  create(@Body() user: UserEntity) {
     return this.userService.createUser(user);
   }
 
+  //Fonction qui permet de mettre à jour un utilisateur
   @Put()
-  update(@Body() user : UserEntity) {
+  update(@Body() user: UserEntity) {
     return this.userService.updateUser(user);
   }
 
+  //Fonction qui permet de supprimer un utilisateur
   @UseGuards(AuthGuard('jwt'))
   @Delete()
   delete(@Param() params) {
@@ -41,9 +55,8 @@ export class UserController {
   // @UseGuards(AuthGuard('jwt'))
   // @Delete()
   // delete(@Param() params) {
-    
-  // }
 
+  // }
 
   // @Post()
   // create(@Body() createUserDto: CreateUserDto) {
