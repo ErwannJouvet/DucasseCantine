@@ -1,26 +1,25 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-// import { CreateUserDto } from './dto/create-user.dto';
-// import { UpdateUserDto } from './dto/update-user.dto';
-import { UserEntity } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
 import { Repository } from 'typeorm';
+import { UserEntity } from './entities/user.entity';
 
 @Injectable()
 export class UserService {
+  constructor(
+    @InjectRepository(UserEntity)
+    private userRepository: Repository<UserEntity>,
+  ) {}
 
-  constructor(@InjectRepository(UserEntity) private userRepository : Repository<UserEntity>) {
-
-  }
-
-  async getUsers() : Promise<UserEntity[]> {
+  async getUsers(): Promise<UserEntity[]> {
     return await this.userRepository.find();
   }
 
-  async findOne(username : string) : Promise<UserEntity | undefined> {
-    let users = await this.userRepository.find(
-      {relations:{restaurant:true, rang:true}, where : [{"email" : username}]}
-    )
+  async findOne(username: string): Promise<UserEntity | undefined> {
+    const users = await this.userRepository.find({
+      relations: { restaurant: true, rang: true },
+      where: [{ email: username }],
+    });
     if (users.length == 1) {
       return users[0];
     } else {
@@ -28,15 +27,15 @@ export class UserService {
     }
   }
 
-  async getUser(_id : number) : Promise<UserEntity[]> {
+  async getUser(_id: number): Promise<UserEntity[]> {
     return await this.userRepository.find({
-        relations : {restaurant : true, rang : true},
-        where : [{"id" : _id}]
+      relations: { restaurant: true, rang: true },
+      where: [{ id: _id }],
     });
   }
 
-  async createUser(user : UserEntity) {
-    if ( user.password ) {
+  async createUser(user: UserEntity) {
+    if (user.password) {
       const password = user.password;
       const saltOrRounds = 10;
       const hash = await bcrypt.hash(password, saltOrRounds);
@@ -45,9 +44,9 @@ export class UserService {
     return await this.userRepository.save(user);
   }
 
-  async updateUser(user : UserEntity) {
+  async updateUser(user: UserEntity) {
     if (user.password) {
-      const password = user.password
+      const password = user.password;
       const saltOrRounds = 10;
       const hash = await bcrypt.hash(password, saltOrRounds);
       user.password = hash;
@@ -55,14 +54,20 @@ export class UserService {
     return await this.userRepository.save(user);
   }
 
-  deleteUser(user : UserEntity){
+  deleteUser(user: UserEntity) {
     return this.userRepository.delete(user);
   }
 
-  async saveOrUpdateRefreshToken(id : string, refreshToken : string, refreshTokenExpires) {
-    await this.userRepository.update(id, {refreshToken : refreshToken, refreshTokenExpires : refreshTokenExpires});
+  async saveOrUpdateRefreshToken(
+    id: string,
+    refreshToken: string,
+    refreshTokenExpires,
+  ) {
+    await this.userRepository.update(id, {
+      refreshToken: refreshToken,
+      refreshTokenExpires: refreshTokenExpires,
+    });
   }
-
 
   // create(createUserDto: CreateUserDto) {
   //   return 'This action adds a new user';

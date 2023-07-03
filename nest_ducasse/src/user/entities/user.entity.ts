@@ -9,8 +9,8 @@ import {
 } from 'typeorm';
 
 @Entity()
+//Décrit la table user dans la base de donnée
 export class UserEntity {
-  //Décrit la table user dans la base de donnée
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -26,16 +26,11 @@ export class UserEntity {
   @Column('text')
   password: string;
 
-  //Le ManyToOne ci dessous est fait de la même manière que sur la doc typeOrm officiel et revient au même que celle vu en cours avec Joan comme pour le rang en dessous.
   //Décrit la relation entre la table user et la table restaurant
   @ManyToOne(() => RestaurantEntity, (restaurant) => restaurant.users, {
     nullable: false,
   })
   restaurant: RestaurantEntity;
-
-  // @ManyToOne(restaurant => RestaurantEntity, restaurant => restaurant.id)
-  // @JoinColumn({name : 'restaurant'})
-  // restaurant : RestaurantEntity;
 
   //Décrit la relation entre la table user et la table rang
   @ManyToOne((rang) => RangEntity, (rang) => rang.id, { nullable: false })

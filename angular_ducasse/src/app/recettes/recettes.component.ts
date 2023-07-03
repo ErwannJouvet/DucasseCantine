@@ -27,6 +27,11 @@ export class RecettesComponent {
     });
   }
 
+  // Redirige vers la page de détail de la recette avec l'id de la recette
+  detailRecette(id: number) {
+    this.router.navigate([`/recette/${id}`]);
+  }
+
   // Vérifie si la recette contient un allergène
   isAllergene(recette: RecetteInterface): boolean{
     let isAllergene = false;
@@ -50,8 +55,5 @@ export class RecettesComponent {
     return isDescriptionTooLong;
   }
 
-  // Redirige vers la page de détail de la recette avec l'id de la recette
-  detailRecette(id: number) {
-    this.router.navigate([`/recette/${id}`]);
-  }
+  
 }

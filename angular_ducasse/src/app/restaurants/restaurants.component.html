@@ -1,0 +1,34 @@
+<div class="flex items-center m-10 text-6xl text-blue">
+  <h1 class="mx-auto">Liste des restaurants Ducasse</h1>
+</div>
+
+<div
+  class="grid grid-cols-4 gap-4 mx-4 items-center justify-center min-h-screen from-[#F9F5F3] via-[#F9F5F3] to-[#F9F5F3] bg-lightbluepastel"
+>
+  <div
+    class="w-full max-w-md mx-auto bg-white rounded-3xl shadow-xl overflow-hidden"
+    *ngFor="let restaurant of restaurants"
+  >
+    <div
+      class="max-w-md mx-auto bg-[#FFF] h-[32rem] cursor-pointer"
+      (click)="detailRestaurant(restaurant.id)"
+    >
+      <div
+        class="h-[236px] bg-cover bg-center"
+        style="
+            background-image: url('{{ restaurant.photo }}');
+          "
+      ></div>
+      <div class="p-4 sm:p-6">
+        <p class="font-bold text-blue text-[22px] leading-7 mb-1">
+          {{ restaurant.nom }}
+        </p>
+
+        <p class="text-[#7C7C80] font-[15px] mt-4 mb-1">
+          {{ restaurant.adresse }}
+          {{ restaurant.code_postale }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

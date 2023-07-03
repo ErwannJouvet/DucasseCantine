@@ -10,6 +10,9 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RecetteDetailComponent } from './recette-detail/recette-detail.component';
 import { RecettesComponent } from './recettes/recettes.component';
+import { RestaurantsComponent } from './restaurants/restaurants.component';
+import { RestaurantComponent } from './restaurant/restaurant.component';
+import { CreerRestaurantComponent } from './creer-restaurant/creer-restaurant.component';
 
 
 @NgModule({
@@ -20,7 +23,10 @@ import { RecettesComponent } from './recettes/recettes.component';
     RecetteDetailComponent,
     LoginComponent,
     CreerRecetteComponent,
-    CreerIngredientComponent
+    CreerIngredientComponent,
+    RestaurantsComponent,
+    RestaurantComponent,
+    CreerRestaurantComponent
   ],
   imports: [
     BrowserModule,

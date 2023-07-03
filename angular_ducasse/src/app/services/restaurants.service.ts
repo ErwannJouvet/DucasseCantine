@@ -1,35 +1,25 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, throwError } from 'rxjs';
-import { RecetteInterface } from '../interfaces/recette-interface';
+import { catchError, pipe, throwError } from 'rxjs';
+import { RestaurantInterface } from '../interfaces/restaurant-interface';
+
 @Injectable({
   providedIn: 'root'
 })
-export class RecetteService {
+export class RestaurantsService {
 
   constructor(private _http:HttpClient) { }
 
-  // Fonction retournant la liste des recettes
-  getRecettes(){
-   return this._http.get('http://localhost:3000/recette');
+  getRestaurants(){
+    return this._http.get('http://localhost:3000/restaurant');
   }
 
-  //Fonction retournant une recette en fonction de son ID
-  getRecette(id: number){
-    return this._http.get(`http://localhost:3000/recette/${id}`);
+  getRestaurant(id:number){
+    return this._http.get(`http://localhost:3000/restaurant/${id}`);
   }
 
-  //Fonction de post d'une recette
-  postRecette(data: RecetteInterface) {
-    return this._http.post('http://localhost:3000/recette', data)
-      .pipe(
-        catchError(this.handleError)
-      )
-  }
-
-  //Fonction de suppression d'une recette
-  deleteRecette(id: number) {
-    return this._http.delete(`http://localhost:3000/recette/${id}`)
+  postRestaurant(data: RestaurantInterface){
+    return this._http.post('http://localhost:3000/restaurant', data)
       .pipe(
         catchError(this.handleError)
       )
@@ -46,8 +36,7 @@ export class RecetteService {
       console.error(
         `Backend returned code ${error.status}, body was: `, error.error);
     }
-    //
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
-  
+
 }
