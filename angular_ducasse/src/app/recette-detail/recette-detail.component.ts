@@ -30,6 +30,21 @@ export class RecetteDetailComponent {
     });
   }
 
+    // Tri des étapes par ordre croissant
+    sortEtapes() {
+      if (this.recetteDetail && this.recetteDetail.etapes) {
+        this.recetteDetail.etapes.sort((a: EtapeInterface, b: EtapeInterface) => a.numero_ordre - b.numero_ordre);
+      }
+    }  
+
+    //suppression d'une recette
+    deleteRecette(id: number) {
+      this.recetteService.deleteRecette(id).subscribe(res => {
+        console.log(res);
+      });
+    }
+    
+
   // Vérifie si la recette contient un allergène
   isAllergene(recette: RecetteInterface): boolean{
     let isAllergene = false;
@@ -42,13 +57,8 @@ export class RecetteDetailComponent {
     }
     return isAllergene;
   }
+  
 
-  // Tri des étapes par ordre croissant
-  sortEtapes() {
-    if (this.recetteDetail && this.recetteDetail.etapes) {
-      this.recetteDetail.etapes.sort((a: EtapeInterface, b: EtapeInterface) => a.numero_ordre - b.numero_ordre);
-    }
-  }  
   
 
 }

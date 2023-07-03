@@ -17,9 +17,9 @@ export class JwtAdminStrategy extends PassportStrategy(Strategy, 'jwt-admin') {
 
   async validate(payload: any) {
     const user = await this.userService.findOne(payload.username);
-    if (!user || (user.rang.id !== 1 && user.rang.id !== 2)) {
-      throw new UnauthorizedException();
-    }
+    // if (!user || (user.rang.id !== 5 && user.rang.id !== 4)) {
+    //   throw new UnauthorizedException();
+    // }
 
     const { password, ...result } = user;
     return result;

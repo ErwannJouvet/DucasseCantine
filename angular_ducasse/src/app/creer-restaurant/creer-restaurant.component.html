@@ -1,0 +1,114 @@
+<div class="flex justify-center mt-4">
+  <form [formGroup]="restaurantForm" (ngSubmit)="submit()">
+    <div>
+      <label for="nom" class="text-blue text-sm font-bold mb-2">Nom :</label>
+      <input
+        type="text"
+        name="nom"
+        formControlName="nom"
+        placeholder="Nom du restaurant"
+        class="shadow appearance-none border-blue border-2 rounded-md w-full py-2 px-3 text-blue leading-tight focus:outline-none focus:shadow-outline"
+        required
+      />
+      <div
+        *ngIf="
+          restaurantForm.get('nom')?.invalid &&
+          restaurantForm.get('nom')?.touched
+        "
+      >
+        Le champ Nom est requis.
+      </div>
+    </div>
+    <div>
+      <label for="num_voie" class="text-blue text-sm font-bold mb-2"
+        >Numéro de voie :
+      </label>
+      <input
+        type="text"
+        name="num_voie"
+        formControlName="num_voie"
+        placeholder="Numéro de voie"
+        class="shadow appearance-none border-blue border-2 rounded-md w-full py-2 px-3 text-blue leading-tight focus:outline-none focus:shadow-outline"
+        required
+      />
+      <div
+        *ngIf="
+          restaurantForm.get('num_voie')?.invalid &&
+          restaurantForm.get('num_voie')?.touched
+        "
+      >
+        Le champ Numéro de voie est requis.
+      </div>
+    </div>
+    <div>
+      <label for="adresse" class="text-blue text-sm font-bold mb-2"
+        >Adresse :
+      </label>
+      <input
+        type="text"
+        name="adresse"
+        formControlName="adresse"
+        placeholder="Adresse"
+        class="shadow appearance-none border-blue border-2 rounded-md w-full py-2 px-3 text-blue leading-tight focus:outline-none focus:shadow-outline"
+        required
+      />
+      <div
+        *ngIf="
+          restaurantForm.get('adresse')?.invalid &&
+          restaurantForm.get('adresse')?.touched
+        "
+      >
+        Le champ Adresse est requis.
+      </div>
+    </div>
+    <div>
+      <label for="code_postale" class="text-blue text-sm font-bold mb-2"
+        >Code postal :
+      </label>
+      <input
+        type="text"
+        name="code_postale"
+        formControlName="code_postale"
+        placeholder="Code postal"
+        class="shadow appearance-none border-blue border-2 rounded-md w-full py-2 px-3 text-blue leading-tight focus:outline-none focus:shadow-outline"
+        required
+      />
+      <div
+        *ngIf="
+          restaurantForm.get('code_postale')?.invalid &&
+          restaurantForm.get('code_postale')?.touched
+        "
+      >
+        Le champ Nom est requis.
+      </div>
+    </div>
+    <div>
+      <label for="photo" class="text-blue text-sm font-bold mb-2"
+        >Photo :
+      </label>
+      <input
+        type="text"
+        name="photo"
+        formControlName="photo"
+        placeholder="Photo"
+        class="shadow appearance-none border-blue border-2 rounded-md w-full py-2 px-3 text-blue leading-tight focus:outline-none focus:shadow-outline"
+        required
+      />
+      <div
+        *ngIf="
+          restaurantForm.get('photo')?.invalid &&
+          restaurantForm.get('photo')?.touched
+        "
+      >
+        Le champ Nom est requis.
+      </div>
+    </div>
+    <br />
+    <button
+      type="submit"
+      class="shadow-md appearance-none border-blue border-2 w-full rounded-md py-2 px-3 text-blue bg-gold leading-tight focus:outline-none focus:shadow-outline text-xl font-bold uppercase mb-4"
+    >
+      Créer
+    </button>
+  </form>
+</div>

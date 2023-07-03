@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { EtapeInterface } from '../interfaces/etape-interface';
 import { IngredientInterface } from '../interfaces/ingredient-interface';
 import { RecetteService } from '../services/recette.service';
@@ -15,6 +16,7 @@ export class CreerRecetteComponent {
 
   constructor(
     private recetteService: RecetteService,
+    private router: Router,
     private formBuilder: FormBuilder
   ) 
   { 
@@ -27,7 +29,7 @@ export class CreerRecetteComponent {
       temps_cuisson: '',
       ingredients: this.formBuilder.array([]),
       etapes: this.formBuilder.array([])
-    });
+      });
   };
 
   // Formulaire pour ingredient
@@ -44,7 +46,7 @@ export class CreerRecetteComponent {
       photo: ''
     });
   }
-  //
+  // Ajout d'un ingrédient
   addIngredient() {
     this.ingredients().push(this.newIngredient());
   }
@@ -76,7 +78,7 @@ export class CreerRecetteComponent {
     this.etapes().removeAt(i);
   }
 
-  // Soumission du formulaire WIP
+  // Soumission du formulaire
   submit() {
     const form = this.recetteForm.getRawValue();
     const dateRecette = new Date();
@@ -104,7 +106,11 @@ export class CreerRecetteComponent {
     }
      // Envoi de la recette
     this.recetteService.postRecette(recette)
-      .subscribe(recette => console.log(recette));
+      .subscribe(() =>{
+        console.log(recette);
+        this.router.navigate(['/recettes']);
+        alert('Recette ajoutée.')
+      });
   }
 
 }
